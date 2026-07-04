@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maafin Aku Ya? 🥺</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, #fce4ec, #f8bbd0, #f48fb1, #f06292);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .hearts-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .heart-float {
+            position: absolute;
+            font-size: 20px;
+            animation: floatUp linear infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) rotate(0deg) scale(1);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.4;
+            }
+            90% {
+                opacity: 0.4;
+            }
+            100% {
+                transform: translateY(-10vh) rotate(360deg) scale(0.5);
+                opacity: 0;
+            }
+        }
+
+        .card {
+            position: relative;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 50px 40px;
+            max-width: 460px;
+            width: 90%;
+            text-align: center;
+            box-shadow:
+                0 25px 60px rgba(233, 30, 99, 0.2),
+                0 0 0 1px rgba(255, 255, 255, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            animation: cardAppear 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            transform: scale(0) translateY(50px);
+        }
+
+        @keyframes cardAppear {
+            to {
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .image-container {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 25px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid #f48fb1;
+            box-shadow: 0 10px 30px rgba(233, 30, 99, 0.25);
+            animation: pulse 2s ease-in-out infinite;
+            background: linear-gradient(135deg, #fce4ec, #f8bbd0);
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 10px 30px rgba(233, 30, 99, 0.25); }
+            50% { transform: scale(1.05); box-shadow: 0 15px 40px rgba(233, 30, 99, 0.35); }
+        }
+
+
+        h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #c2185b;
+            margin-bottom: 12px;
+            animation: fadeIn 1s ease 0.3s both;
+        }
+
+        .description {
+            font-size: 15px;
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 10px;
+            animation: fadeIn 1s ease 0.5s both;
+        }
+
+        .apology-text {
+            font-size: 16px;
+            color: #ad1457;
+            font-weight: 600;
+            margin-bottom: 35px;
+            padding: 15px;
+            background: linear-gradient(135deg, #fce4ec, #fff);
+            border-radius: 15px;
+            animation: fadeIn 1s ease 0.7s both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            animation: fadeIn 1s ease 0.9s both;
+            min-height: 60px;
+            position: relative;
+        }
+
+        .btn-yes {
+            padding: 14px 40px;
+            font-size: 16px;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            background: linear-gradient(135deg, #e91e63, #c2185b);
+            color: white;
+            box-shadow: 0 8px 25px rgba(233, 30, 99, 0.4);
+        }
+
+        .btn-yes:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 35px rgba(233, 30, 99, 0.5);
+        }
+
+        .btn-yes:active {
+            transform: scale(0.95);
+        }
+
+        .btn-no {
+            padding: 14px 40px;
+            font-size: 16px;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            border: 2px solid #e0e0e0;
+            border-radius: 50px;
+            cursor: pointer;
+            background: white;
+            color: #999;
+            user-select: none;
+            transition: left 0.4s ease, top 0.4s ease;
+        }
+
+        .btn-no:hover {
+            border-color: #e0e0e0;
+            color: #999;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="hearts-bg" id="heartsBg"></div>
+
+    <div class="card">
+        <div class="image-container">
+            <img src="ceweku.jpeg" alt="">
+        </div>
+
+        <h1>Kiw kamu, oakwokawokak</h1>
+
+        <p class="description">
+            Udah mati rasa ni yahh, aduh kasiannya, ak sih ga ya oakwoakwoakowk
+        </p>
+
+        <p class="apology-text">
+            gueh mo minta maap yaaaa, selama ini buat jiwa dan ragamu itu capeee 💕
+        </p>
+
+        <div class="buttons">
+            <button class="btn-yes" onclick="forgive()">Ya, Gapapa ❤️</button>
+            <button class="btn-no" id="btnNo">No 😤</button>
+        </div>
+    </div>
+
+
+    <script>
+        const btnNo = document.getElementById('btnNo');
+        const heartsBg = document.getElementById('heartsBg');
+
+        function createFloatingHearts() {
+            const hearts = ['💕', '💗', '💖', '💘', '💝', '✨', '🌸'];
+            for (let i = 0; i < 15; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart-float';
+                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDuration = (8 + Math.random() * 12) + 's';
+                heart.style.animationDelay = Math.random() * 10 + 's';
+                heart.style.fontSize = (14 + Math.random() * 20) + 'px';
+                heartsBg.appendChild(heart);
+            }
+        }
+
+        createFloatingHearts();
+
+        let mouseX = 0;
+        let mouseY = 0;
+
+        document.addEventListener('mousemove', function(e) {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function escapeButton(e) {
+            const btnRect = btnNo.getBoundingClientRect();
+            const btnCenterX = btnRect.left + btnRect.width / 2;
+            const btnCenterY = btnRect.top + btnRect.height / 2;
+
+            let dx = btnCenterX - mouseX;
+            let dy = btnCenterY - mouseY;
+
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist === 0) { dx = 1; dy = 0; }
+            else { dx /= dist; dy /= dist; }
+
+            const moveDistance = 250 + Math.random() * 100;
+            let newX = btnRect.left + dx * moveDistance;
+            let newY = btnRect.top + dy * moveDistance;
+
+            const padding = 10;
+            const maxX = window.innerWidth - btnRect.width - padding;
+            const maxY = window.innerHeight - btnRect.height - padding;
+
+            if (newX < padding) newX = padding + Math.random() * 50;
+            if (newX > maxX) newX = maxX - Math.random() * 50;
+            if (newY < padding) newY = padding + Math.random() * 50;
+            if (newY > maxY) newY = maxY - Math.random() * 50;
+
+            newX = Math.max(padding, Math.min(newX, maxX));
+            newY = Math.max(padding, Math.min(newY, maxY));
+
+            btnNo.style.position = 'fixed';
+            btnNo.style.left = newX + 'px';
+            btnNo.style.top = newY + 'px';
+            btnNo.style.zIndex = '5';
+        }
+
+        btnNo.addEventListener('mouseenter', escapeButton);
+        btnNo.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            mouseX = e.touches[0].clientX;
+            mouseY = e.touches[0].clientY;
+            escapeButton(e);
+        });
+
+        function forgive() {
+            alert('Makasih banyak ya! Aku janji gaakan ngulangin lagi 💖🥰');
+        }
+    </script>
+</body>
+</html>
